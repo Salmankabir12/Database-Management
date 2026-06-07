@@ -1,31 +1,54 @@
-Healthcare Management System – Project Description
+# Healthcare Management System
 
-The Healthcare Management System is a web-based application developed to simplify and organize the day-to-day operations of a hospital or clinic. 
-The system provides a centralized platform where patients, doctors, and administrators can interact efficiently. It replaces manual processes with a digital solution, 
-making tasks like appointment booking, patient record management, and scheduling more accurate and convenient.
+A web-based healthcare management system built with PHP, MySQL, Bootstrap, and JavaScript. Patients can register, book appointments, and view medical history. Doctors manage queues and records. Admins oversee the entire system.
 
-The primary objective of this system is to improve the overall efficiency of healthcare services. It allows patients to book appointments easily, helps doctors manage their schedules and patient records, and enables administrators to monitor and control the system effectively. 
-By automating these processes, the system reduces errors, saves time, and improves service quality.
+## Features
 
-The system supports three types of users: patients, doctors, and administrators. Each role has its own set of functionalities. Patients can register, log in, book appointments with doctors based on specialization and availability, view their appointments, 
-check their queue status, and access their medical history. Doctors can view their scheduled appointments, manage the patient queue, 
-update appointment statuses such as pending, ongoing, or completed, and record medical details including diagnosis, prescribed medicines, and recommended tests. Administrators have full control over the system. They can view all appointments, manage doctor schedules, 
-search doctors by specialization, analyze reports, and identify top-performing or most experienced doctors.
+- **Patient Portal**: Register, login, book/cancel appointments, view queue status and medical history
+- **Doctor Portal**: Manage patient queue, update appointment status, add medical records
+- **Admin Portal**: Manage doctors, schedules, and system oversight
+- **Queue Management**: Token-based waiting system with live status
+- **Appointment Booking**: Conflict detection, slot capacity limits, schedule validation
 
-The system is built using HTML, CSS, and Bootstrap for the frontend, PHP for the backend, and MySQL as the database. It follows a client-server architecture, where users interact through a web interface and all data is stored and managed in a structured relational database.
+## Tech Stack
 
-The database design is one of the core strengths of the project. It uses multiple related tables such as patient, doctor, appointment, branch, timeslot, doctor_schedule, queue, and medical_history. The appointment table acts as the central link connecting patients, doctors, 
-branches, and time slots. Relationships between tables are maintained using foreign keys, ensuring consistency and integrity of data.
+- **Frontend**: HTML, CSS, Bootstrap 4/5
+- **Backend**: PHP (with prepared statements)
+- **Database**: MySQL (phpMyAdmin compatible)
+- **Security**: Password hashing with password_hash()/password_verify()
 
-One of the key features of the system is the appointment booking process. The system ensures that patients cannot book duplicate appointments, that time slots are not overfilled, and that doctors are only booked on their available days and branches. 
-Another important feature is the queue management system. Each appointment is assigned a token number, and patients are categorized as 
-waiting, currently being served, or completed. This simulates a real-world hospital environment and helps manage patient flow effectively.
+## Directory Structure
 
-The system also includes a medical history module where doctors can store detailed treatment records for each patient. Patients can later access their history, which makes follow-up treatments easier and more organized.
+```
+.
+├── index.html          # Landing page
+├── index.php           # Alternative homepage
+├── config/
+│   ├── db.php          # Database connection
+│   └── schema.sql      # Full database schema with seed data
+├── patient/            # Patient portal files
+├── doctor/             # Doctor portal files
+├── admin/              # Admin portal files
+├── actions/            # Shared action handlers
+├── api/                # AJAX endpoint responses
+└── common/             # Shared navbar/footer
+```
 
-In addition, the system provides reporting features for administrators. These include generating summaries such as the number of appointments per branch and identifying the most experienced doctors. These insights help in decision-making and resource management.
+## Installation
 
-From a database perspective, the project demonstrates the use of important SQL concepts such as joins to combine data from multiple tables, group by for generating reports, aggregate functions like count for managing queues and slot limits, and subqueries for advanced data retrieval. 
-Prepared statements are used in many parts of the system to improve security and prevent SQL injection.
+1. Install XAMPP/WAMP/LAMP with PHP 8+ and MySQL
+2. Clone to htdocs (XAMPP) or web root
+3. Import config/schema.sql via phpMyAdmin or CLI
+4. Update config/db.php with your MySQL credentials
+5. Access at http://localhost/healthcare_system
 
-Overall, this project demonstrates how a real-world healthcare system can be effectively managed using web technologies and a relational database. It improves organization, enhances user experience, and provides a scalable solution for managing hospital operations.
+### Default Logins
+
+| Role    | Email                  | Password |
+|---------|------------------------|----------|
+| Admin   | admin@gmail.com        | admin123 |
+| Patient | (register a new account) |         |
+
+## Database Schema
+
+Includes tables: admin, patient, doctor, branch, timeslot, doctor_schedule, appointment, queue, medical_history. See config/schema.sql for full details.
